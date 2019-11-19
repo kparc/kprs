@@ -1,0 +1,27 @@
+{
+  "name": "tree-sitter-k",
+  "version": "0.0.1",
+  "description": "k parser for tree-sitter",
+  "main": "index.js",
+  "scripts": {
+    "test": "make gen",
+    "install": "node-gyp rebuild"
+  },
+  "keywords": [
+    "k",
+    "parserclub"
+  ],
+  "author": "regents of kparc",
+  "license": "MIT",
+  "gypfile": true,
+  "dependencies": {
+    "nan": "^2.14.0"
+  },
+  "devDependencies": {
+    "tree-sitter-cli": "^0.15.13"
+  },
+  "repository": {
+    "type": "git",
+    "url": "keybase://team/kparc.parserclub/kprs"
+  }
+}
