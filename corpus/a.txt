@@ -1,0 +1,461 @@
+===
+i
+===
+42
+---
+(k (n (int1)))
+
+===
+i+i
+===
+2+3
+---
+(k (dap (n (int1)) (v) (n (int1))))
+
+===
++i
+===
++4
+---
+(k (map (v) (n (int1))))
+
+===
+-N
+===
+-2
+---
+(k (n (int1)))
+
+===
+++i
+===
+++123
+---
+(k (map (v) (map (v) (n (int1)))))
+
+===
+i+
+===
+0+
+---
+(k (cap (n (int1)) (v)))
+
+===
+i++
+===
+0++
+---
+(k (cap (cap (n (int1)) (v)) (v)))
+
+===
+i++i
+===
+0++0
+---
+(k (dap (n (int1)) (v) (map (v) (n (int1)))))
+
+===
+i+-N
+===
+2+-1
+---
+(k (dap (n (int1)) (v) (n (int1))))
+
+===
+v[i]+v[I]
+===
+x[0]!x[1 2]
+---
+(k (dap (ap (n (var)) (seq (n (int1))))
+        (v)
+        (ap (n (var)) (seq (n (intv (int1) (int1)))))))
+
+===
+*[i]
+===
+*[0]
+---
+(k (ap (v) (seq (n (int1)))))
+
+===
+#*[i]
+===
+#*[0]
+---
+(k (ap (cap (v) (v)) (seq (n (int1)))))
+
+===
+i+![i]
+===
+1+!2
+---
+(k (dap (n (int1)) (v) (map (v) (n (int1)))))
+
+===
+*[i;i]
+===
+*[0;1]
+---
+(k (ap (v) (seq (n (int1)) (n (int1)))))
+
+===
+*[i;+]
+===
+*[0;+]
+---
+(k (ap (v) (seq (n (int1)) (v))))
+
+===
+*[i;i;i]
+===
+*[0;1;2]
+---
+(k (ap (v) (seq (n (int1)) (n (int1)) (n (int1)))))
+
+===
++/
+===
++/
+---
+(k (avd (v) (a)))
+
+===
++/*\
+===
++/*\
+---
+(k (cap (avd (v) (a)) (avd (v) (a))))
+
+===
++/(i;i)
+===
++/(2;3)
+---
+(k (map (avd (v) (a))
+   (list (seq (n (int1)) (n (int1)))))) 
+
+===
++//v
+===
++//foo
+---
+(k (map (avd (avd (v) (a)) (a))
+        (n (var))))
+
+===
++/I
+===
++/4 2
+---
+(k (map (avd (v) (a))
+        (n (intv (int1) (int1)))))
+
+===
+i+/I
+===
+0+/2 4
+---
+(k (dap (n (int1))
+        (avd (v) (a))
+        (n (intv (int1) (int1)))))
+
+===
+i/i
+===
+2/2
+---
+(k (map (avd (n (int1)) (a)) (n (int1)))) 
+
+===
+i/
+===
+42/
+---
+(k (avd (n (int1)) (a)))
+
+===
+()
+===
+()
+---
+(k (list))
+
+===
+(i)
+===
+(1)
+---
+(k (parn (n (int1))))
+
+===
+(i;i)
+===
+(1;2)
+---
+(k (list (seq (n (int1)) (n (int1)))))
+
+===
+v
+===
+foo
+---
+(k (n (var)))
+
+===
+(((v)))
+===
+(((foo)))
+---
+(k (parn (parn (parn (n (var))))))
+
+===
+i+i+i
+===
+1+2+3
+---
+(k (dap (n (int1))
+        (v)
+        (dap (n (int1)) (v) (n (int1)))))
+
+===
+i+(i+i)
+===
+1+(2+3)
+---
+(k (dap (n (int1))
+        (v)
+        (parn (dap (n (int1)) (v) (n (int1))))))
+
+===
+(i+i)+i
+===
+(1+2)+3
+---
+(k (dap (parn (dap (n (int1)) (v) (n (int1))))
+   (v)
+   (n (int1))))
+
+===
+f...f
+===
+1. ..2
+---
+(k (dap (n (flt1)) (v) (n (flt1))))
+
+===
+I
+===
+1 2 3
+---
+(k (n (intv (int1) (intv (int1) (int1)))))
+
+===
+I₋₊₊
+===
+-1 2 3
+---
+(k (n (intv (int1) (intv (int1) (int1)))))
+
+===
+I₊₋₊
+===
+1 -2 3
+---
+(k (n (intv (int1) (intv (int1) (int1)))))
+
+===
+I₋₋₋
+===
+-1 -2 -3
+---
+(k (n (intv (int1) (intv (int1) (int1)))))
+
+===
+I₁
+===
+,-0
+---
+(k (map (v) (n (int1))))
+
+===
+(I;I)
+===
+(1 0;0 1)
+---
+(k (list (seq (n (intv (int1) (int1)))
+              (n (intv (int1) (int1))))))
+
+===
+(I₁;I)
+===
+(,0;0 1)
+---
+(k (list (seq (map (v) (n (int1)))
+              (n (intv (int1) (int1))))))
+
+===
+vI
+===
+foo 0 1
+---
+(k (map (n (var))
+        (n (intv (int1) (int1)))))
+
+===
+Iv
+===
+0 1 x
+---
+(k (map (n (intv (int1) (int1)))
+        (n (var))))
+
+===
+id
+===
+{[x]x}
+---
+(k (lam (args (var)) (seq (n (var)))))
+
+===
+const
+===
+{[x;y]y}
+---
+(k (lam (args (var) (var)) (seq (n (var)))))
+
+===
+fnil0
+===
+{[]}
+---
+(k (lam))
+
+===
+fseq
+===
+{[a]a;a}
+---
+(k (lam (args (var)) (seq (n (var)) (n (var)))))
+
+===
+i+I
+===
+1+0 1 2
+---
+(k (dap (n (int1))
+        (v)
+        (n (intv (int1) (intv (int1) (int1))))))
+
+===
+I+i
+===
+0 1 2+1
+---
+(k (dap (n (intv (int1) (intv (int1) (int1))))
+        (v)
+        (n (int1))))
+
+===
+I+v
+===
+0 1 2+x
+---
+(k (dap (n (intv (int1) (intv (int1) (int1))))
+        (v)
+        (n (var))))
+
+===
+I+I
+===
+0 1 2+3 4
+---
+(k (dap (n (intv (int1) (intv (int1) (int1))))
+        (v)
+        (n (intv (int1) (int1)))))
+
+===
+v:i
+===
+answer:42
+---
+(k (ass (n (var)) (n (int1))))
+
+===
+e
+===
+:x*x
+---
+(k (exp (dap (n (var)) (v) (n (var)))))
+
+===
+v:e
+===
+add::x+y
+---
+(k (ass (n (var))
+     (exp (dap (n (var)) (v) (n (var))))))
+
+===
+v:v:v
+===
+x:y:z
+---
+(k (ass (n (var)) (ass (n (var)) (n (var)))))
+
+===
+v+:+i
+===
+c+:+1
+---
+(k (ass (n (var)) (v) (map (v) (n (int1)))))
+
+===
++[a:1;b:2]
+===
++[a:1;b:2]
+---
+(k (ap (v) (seq (ass (n (var)) (n (int1)))
+                (ass (n (var)) (n (int1)))))) 
+
+===
+f g h
+===
+f g h
+---
+(k (map (n (var))
+        (map (n (var)) (n (var)))))
+
+===
+f g*h k
+===
+f g*h k
+---
+(k (map (n (var))
+        (dap (n (var)) (v)
+             (map (n (var)) (n (var))))))
+
+===
+e/I
+===
+(:x+y)/2 2
+---
+(k (map f: (avd (parn (exp (dap a: (n (var)) v: (v) b: (n (var))))) (a))
+        a: (n (intv (int1) (int1)))))
+
+===
+lelf/pe/p24
+===
+p24:(:<<y,x)/|sv[1+!n:10]i:1000000-1
+---
+(k (ass (n (var))
+    (map (avd (parn (exp (map (v)
+                              (map (v)
+                                   (dap (n (var)) (v) (n (var)))))))
+              (a))
+         (map (v)
+           (map (ap (n (var))
+                    (seq (dap (n (int1))
+                              (v)
+                              (map (v) (ass (n (var)) (n (int1)))))))
+                (ass (n (var))
+                     (n (intv (int1) (int1)))))))))
