@@ -2,11 +2,12 @@
      dap map cap           avd    ap   parn list   lam     */
 module.exports=grammar({name:'k',rules:{k:$=>$._e,
 
-_e:$=>choice($.ass,$.dap,$.map,$.cap,$._t,$.exp), ass:$=>prec.dynamic(1,seq($._n,optional($.v),':',$._e)),
-                                                  exp:$=>seq(':',$._e),
-                                                  dap:$=>prec.dynamic(1,seq(field('a',$._n),field('v',$._v),field('b',$._e))),
-                                                  map:$=>seq(field('f',$._t),optional($._sp),field('a',$._e)),
-                                                  cap:$=>prec.dynamic(1,seq(choice($.cap,$._t),$._v)),
+_e:$=>prec.dynamic(-1,choice($.ass,$.dap,$.map,$.cap,$._t,$.exp)),
+      ass:$=>prec.dynamic(1,seq($._n,optional($.v),':',$._e)),
+      exp:$=>seq(':',$._e),
+      dap:$=>prec.dynamic(1,seq(field('a',$._n),field('v',$._v),field('b',$._e))),
+      map:$=>seq(field('f',$._t),optional($._sp),field('a',$._e)),
+      cap:$=>prec.dynamic(1,seq(choice($.cap,$._t),$._v)),
 _v:$=>choice($.avd,$.v), avd:$=>seq($._t,$.a),
 _t:$=>choice($._n,$._v),
 _n:$=>choice($.ap,$.parn,$.list,$.n,$.lam),
