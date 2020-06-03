@@ -2,11 +2,11 @@
      dap map cap           avd    ap   parn list   lam     */
 module.exports=grammar({name:'k',rules:{k:$=>$._e,
 
-_e:$=>choice($.ass,$.dap,$.map,$.cap,$._t,$.exp), ass:$=>seq($._n,optional($.v),':',$._e),
+_e:$=>choice($.ass,$.dap,$.map,$.cap,$._t,$.exp), ass:$=>prec.dynamic(1,seq($._n,optional($.v),':',$._e)),
                                                   exp:$=>seq(':',$._e),
-                                                  dap:$=>seq(field('a',$._n),field('v',$._v),field('b',$._e)),
-                                                  map:$=>seq(field('f',$._t),field('a',$._e)),
-                                                  cap:$=>seq(choice($.cap,$._t),$._v),
+                                                  dap:$=>prec.dynamic(1,seq(field('a',$._n),field('v',$._v),field('b',$._e))),
+                                                  map:$=>seq(field('f',$._t),optional(' '),field('a',$._e)),
+                                                  cap:$=>prec.dynamic(1,seq(choice($.cap,$._t),$._v)),
 _v:$=>choice($.avd,$.v), avd:$=>seq($._t,$.a),
 _t:$=>choice($._n,$._v),
 _n:$=>choice($.ap,$.parn,$.list,$.n,$.lam),
@@ -20,13 +20,14 @@ seq: $=>seq($._e,repeat(seq($._semi,$._e))),
 lam: $=>seq('{[',field('v',optional($.args)),']',field('b',optional($.seq)),'}'),
 
 n:   $=>choice($.int1,$.intv,$.flt1,$.var),
-int1:$=>/-?\d+/, intv:$=>prec.right(1,seq($.int1,choice($.int1,$.intv))),
-flt1:$=>/-?(\d+\.|\d*\.\d+)(e-?\d+)?/,
+int1:$=>seq(optional('-'),/\d+/), intv:$=>seq($.int1,' ',repeat(seq($.int1,' ')),$.int1),
+flt1:$=>seq(optional('-'),/(\d+\.|\d*\.\d+)(e-?\d+)?/),
 
-v:$=>/[+\-*%!&|<>=~,^#_$?@.]/,
+v:$=>choice('-',/[+*%!&|<>=~,^#_$?@.]/),
 a:$=>/[\/\\\']:?/,
 
 var: $=>/[a-z][a-z0-9]*/, _semi:$=>/[;\n]/
 
-},conflicts:$=>[[$.dap,$._t],[$.parn,$.seq],[$.cap,$._t],[$.ass,$.dap,$._t],[$.ass,$._v]]
+},conflicts:$=>[[$.dap,$._t],[$.parn,$.seq],[$.cap,$._t],[$.ass,$.dap,$._t],[$.ass,$._v],[$.dap,$.map],
+                [$.int1,$.v],[$.flt1,$.v],[$.n,$.intv],[$.intv]]
 })

@@ -13,6 +13,13 @@ i+i
 (k (dap (n (int1)) (v) (n (int1))))
 
 ===
+i-i
+===
+4-2
+---
+(k (dap (n (int1)) (v) (n (int1))))
+
+===
 +i
 ===
 +4
@@ -236,9 +243,9 @@ i+(i+i)
    (n (int1))))
 
 ===
-f...f
+f.*.f
 ===
-1. ..2
+1.*.2
 ---
 (k (dap (n (flt1)) (v) (n (flt1))))
 
@@ -247,28 +254,28 @@ I
 ===
 1 2 3
 ---
-(k (n (intv (int1) (intv (int1) (int1)))))
+(k (n (intv (int1) (int1) (int1))))
 
 ===
 I₋₊₊
 ===
 -1 2 3
 ---
-(k (n (intv (int1) (intv (int1) (int1)))))
+(k (n (intv (int1) (int1) (int1))))
 
 ===
 I₊₋₊
 ===
 1 -2 3
 ---
-(k (n (intv (int1) (intv (int1) (int1)))))
+(k (n (intv (int1) (int1) (int1))))
 
 ===
 I₋₋₋
 ===
 -1 -2 -3
 ---
-(k (n (intv (int1) (intv (int1) (int1)))))
+(k (n (intv (int1) (int1) (int1))))
 
 ===
 I₁
@@ -344,14 +351,14 @@ i+I
 ---
 (k (dap (n (int1))
         (v)
-        (n (intv (int1) (intv (int1) (int1))))))
+        (n (intv (int1) (int1) (int1)))))
 
 ===
 I+i
 ===
 0 1 2+1
 ---
-(k (dap (n (intv (int1) (intv (int1) (int1))))
+(k (dap (n (intv (int1) (int1) (int1)))
         (v)
         (n (int1))))
 
@@ -360,7 +367,7 @@ I+v
 ===
 0 1 2+x
 ---
-(k (dap (n (intv (int1) (intv (int1) (int1))))
+(k (dap (n (intv (int1) (int1) (int1)))
         (v)
         (n (var))))
 
@@ -369,7 +376,7 @@ I+I
 ===
 0 1 2+3 4
 ---
-(k (dap (n (intv (int1) (intv (int1) (int1))))
+(k (dap (n (intv (int1) (int1) (int1)))
         (v)
         (n (intv (int1) (int1)))))
 
@@ -458,4 +465,4 @@ p24:(:<<y,x)/|sv[1+!n:10]i:1000000-1
                               (v)
                               (map (v) (ass (n (var)) (n (int1)))))))
                 (ass (n (var))
-                     (n (intv (int1) (int1)))))))))
+                     (dap (n (int1)) (v) (n (int1)))))))))
