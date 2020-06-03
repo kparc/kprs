@@ -446,7 +446,8 @@ e/I
 ===
 (:x+y)/2 2
 ---
-(k (map f: (avd (parn (exp (dap a: (n (var)) v: (v) b: (n (var))))) (a))
+(k (map f: (avd f: (parn (exp (dap a: (n (var)) v: (v) b: (n (var)))))
+                a: (a))
         a: (n (intv (int1) (int1)))))
 
 ===

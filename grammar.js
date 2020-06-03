@@ -8,7 +8,7 @@ _e:$=>prec.dynamic(-1,choice($.ass,$.dap,$.map,$.cap,$._t,$.exp)),
       dap:$=>prec.dynamic(1,seq(field('a',$._n),field('v',$._v),field('b',$._e))),
       map:$=>seq(field('f',$._t),optional($._sp),field('a',$._e)),
       cap:$=>prec.dynamic(1,seq(choice($.cap,$._t),$._v)),
-_v:$=>choice($.avd,$.v), avd:$=>seq($._t,$.a),
+_v:$=>choice($.avd,$.v), avd:$=>seq(field('f',$._t),field('a',$.a)),
 _t:$=>choice($._n,$._v),
 _n:$=>choice($.ap,$.parn,$.list,$.n,$.lam),
 
