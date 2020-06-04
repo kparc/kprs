@@ -21,7 +21,9 @@ seq: $=>seq($._e,repeat(seq($._semi,$._e))),
 lam: $=>seq('{[',field('v',optional($.args)),']',field('b',optional($.seq)),'}'),
 
 n:   $=>choice($.int1,$.intv,$.flt1,$.var),
-int1:$=>seq(optional('-'),$._pint1), _pint1:$=>/\d+/, intv:$=>seq(repeat1(seq($.int1,$._sp)),$.int1),
+
+int1:$=>seq(optional('-'),$._pint1), _pint1:$=>/\d+/,
+intv:$=>seq(optional('-'),$._pintv), _pintv:$=>/\d+( -?\d+)+/,
 flt1:$=>seq(optional('-'),$._pflt1), _pflt1:$=>/(\d+\.|\d*\.\d+)(e-?\d+)?/,
 
 v:$=>choice('-',/[+*%!&|<>=~,^#_$?@.]/), _sp:$=>' ',
@@ -30,6 +32,5 @@ a:$=>/[\/\\\']:?/,
 var: $=>/[a-z][a-z0-9]*/, _semi:$=>/[;\n]/
 
 },conflicts:$=>[[$.dap,$._t],[$.parn,$.seq],[$.cap,$._t],[$.ass,$.dap,$._t],[$.ass,$._v],[$.dap,$.map],
-                [$.int1,$.v],[$.flt1,$.v],[$.n,$.intv],[$.intv]],
-  //extras:$=>[]
+                [$.int1,$.v],[$.flt1,$.v],[$.n,$.intv],[$.intv],[$.intv,$.v]]
 })

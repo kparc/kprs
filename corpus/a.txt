@@ -75,7 +75,7 @@ x[0]!x[1 2]
 ---
 (k (dap (ap (n (var)) (seq (n (int1))))
         (v)
-        (ap (n (var)) (seq (n (intv (int1) (int1)))))))
+        (ap (n (var)) (seq (n (intv))))))
 
 ===
 *[i]
@@ -155,7 +155,7 @@ i+![i]
 +/4 2
 ---
 (k (map (avd (v) (a))
-        (n (intv (int1) (int1)))))
+        (n (intv))))
 
 ===
 i+/I
@@ -164,7 +164,7 @@ i+/I
 ---
 (k (dap (n (int1))
         (avd (v) (a))
-        (n (intv (int1) (int1)))))
+        (n (intv))))
 
 ===
 i/i
@@ -254,28 +254,63 @@ I
 ===
 1 2 3
 ---
-(k (n (intv (int1) (int1) (int1))))
+(k (n (intv)))
 
 ===
 I₋₊₊
 ===
 -1 2 3
 ---
-(k (n (intv (int1) (int1) (int1))))
+(k (n (intv)))
 
 ===
 I₊₋₊
 ===
 1 -2 3
 ---
-(k (n (intv (int1) (int1) (int1))))
+(k (n (intv)))
 
 ===
 I₋₋₋
 ===
 -1 -2 -3
 ---
-(k (n (intv (int1) (int1) (int1))))
+(k (n (intv)))
+
+===
+I₇
+===
+0 1 2 3 4 5 6
+---
+(k (n (intv)))
+
+===
+I₈
+===
+0 1 2 3 4 5 6 7
+---
+(k (n (intv)))
+
+===
+,I₄
+===
+,0 1 2 3
+---
+(k (map (v) (n (intv))))
+
+===
+,,I₄
+===
+,,0 1 2 3
+---
+(k (map (v) (map (v) (n (intv)))))
+
+===
+,,,I₄
+===
+,,,0 1 2 3
+---
+(k (map (v) (map (v) (map (v) (n (intv))))))
 
 ===
 I₁
@@ -289,8 +324,8 @@ I₁
 ===
 (1 0;0 1)
 ---
-(k (list (seq (n (intv (int1) (int1)))
-              (n (intv (int1) (int1))))))
+(k (list (seq (n (intv))
+              (n (intv)))))
 
 ===
 (I₁;I)
@@ -298,7 +333,7 @@ I₁
 (,0;0 1)
 ---
 (k (list (seq (map (v) (n (int1)))
-              (n (intv (int1) (int1))))))
+              (n (intv)))))
 
 ===
 vI
@@ -306,14 +341,14 @@ vI
 foo 0 1
 ---
 (k (map (n (var))
-        (n (intv (int1) (int1)))))
+        (n (intv))))
 
 ===
 Iv
 ===
 0 1 x
 ---
-(k (map (n (intv (int1) (int1)))
+(k (map (n (intv))
         (n (var))))
 
 ===
@@ -351,14 +386,14 @@ i+I
 ---
 (k (dap (n (int1))
         (v)
-        (n (intv (int1) (int1) (int1)))))
+        (n (intv))))
 
 ===
 I+i
 ===
 0 1 2+1
 ---
-(k (dap (n (intv (int1) (int1) (int1)))
+(k (dap (n (intv))
         (v)
         (n (int1))))
 
@@ -367,7 +402,7 @@ I+v
 ===
 0 1 2+x
 ---
-(k (dap (n (intv (int1) (int1) (int1)))
+(k (dap (n (intv))
         (v)
         (n (var))))
 
@@ -376,9 +411,9 @@ I+I
 ===
 0 1 2+3 4
 ---
-(k (dap (n (intv (int1) (int1) (int1)))
+(k (dap (n (intv))
         (v)
-        (n (intv (int1) (int1)))))
+        (n (intv))))
 
 ===
 v:i
@@ -448,7 +483,7 @@ e/I
 ---
 (k (map f: (avd f: (parn (exp (dap a: (n (var)) v: (v) b: (n (var)))))
                 a: (a))
-        a: (n (intv (int1) (int1)))))
+        a: (n (intv))))
 
 ===
 lelf/pe/p24
