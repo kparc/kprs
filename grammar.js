@@ -3,7 +3,7 @@
 module.exports=grammar({name:'k',rules:{k:$=>$._e,
 
 _e:$=>prec.dynamic(-1,choice($.ass,$.dap,$.map,$.cap,$._t,$.exp)),
-      ass:$=>prec.dynamic(1,seq($._n,optional($.v),':',$._e)),
+      ass:$=>prec.dynamic(1,seq(field('v',$._n),field('f',optional($.v)),':',field('a',$._e))),
       exp:$=>seq(':',$._e),
       dap:$=>prec.dynamic(1,seq(field('a',$._n),field('v',$._v),optional($._sp),field('b',$._e))),
       map:$=>seq(field('f',$._t),optional($._sp),field('a',$._e)),
