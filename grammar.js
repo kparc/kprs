@@ -17,8 +17,7 @@ list:$=>seq('(',optional($.seq),')'),
 ap:  $=>prec(1,seq(field('f',$._e),'[',field('a',optional($.seq)),']')),
 
 args:$=>seq($.var,repeat(seq(';',$.var))),
-seq: $=>prec.right(choice(field('e',seq(field('e0',$._e),field('es',optional(seq($._semi,optional($.seq)))))),
-                          field('s',seq($._semi,optional($.seq))))),
+seq: $=>seq($._e,repeat(seq($._semi,$._e))),
 lam: $=>seq('{[',field('v',optional($.args)),']',field('b',optional($.seq)),'}'),
 
 n:   $=>choice($.int1,$.intv,$.flt1,$.var),
