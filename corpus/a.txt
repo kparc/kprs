@@ -134,6 +134,32 @@ i+![i]
 (k (ap (v) (seq (n (int1)) (n (int1)) (n (int1)))))
 
 ===
+v[dap;map]
+===
+foo[2+3;!10]
+---
+(k (ap (n (var))
+       (seq (dap (n (int1)) (v) (n (int1)))
+            (map (v) (n (int1))))))
+
+===
++[;]
+===
++[;]
+---
+(k (ap (v) (seq)))
+
+===
+v[;i][i;][i]
+===
+foo[;1][0;][2]
+---
+(k (ap (ap (ap (n (var))
+               (seq (n (int1))))
+           (seq (n (int1))))
+   (seq (n (int1)))))
+
+===
 +/
 ===
 +/
