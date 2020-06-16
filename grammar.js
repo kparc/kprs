@@ -1,6 +1,7 @@
 /* e:nve|te|t..v|t t:n|v v:tA|V n:t[E*]|(E)|(E*)|{[..]E}|N
      dap map cap           avd    ap   parn list   lam     */
-module.exports=grammar({name:'k',rules:{k:$=>choice($._v,$._e,$._pe),
+module.exports=grammar({name:'k',rules:{k:$=>seq(repeat($._ksep),$._k,repeat(seq($._ksep,optional($._k)))),
+                                       _k:$=>choice($._v,$._e,$._pe),
 
 _pe:$=>choice($.pdap,$.pmap),
    pdap:$=>prec.dynamic(1,seq(field('a',$._n),optional($._sp),field('v',$._v),
@@ -36,10 +37,10 @@ flt1:$=>seq(optional('-'),$._pflt1), _pflt1:$=>/(\d+\.|\d*\.\d+)(e-?\d+)?/,
 v:$=>choice('-',/[+*%!&|<>=~,^#_$?@.]/), _sp:$=>' ',
 a:$=>/[\/\\\']:?/,
 
-var: $=>/[a-z][a-z0-9]*/, _semi:$=>/[;\n]/
+var: $=>/[a-z][a-z0-9]*/, _semi:$=>/;|\n\s+/, _ksep:$=>/;|\n/
 
 },conflicts:$=>[[$.dap,$._t],[$.parn,$.seq],[$.cap,$._t],[$.ass,$.dap,$._t],[$.ass,$._v],[$.dap,$.map],
                 [$.int1,$.v],[$.flt1,$.v],[$.n,$.intv],[$.intv],[$.intv,$.v],
-                [$.pmap,$._t],[$.ass,$.dap,$.pdap,$._t],[$.dap,$.pdap,$._t],[$.pmap,$._v],[$.k,$._t]],
+                [$.pmap,$._t],[$.ass,$.dap,$.pdap,$._t],[$.dap,$.pdap,$._t],[$.pmap,$._v],[$._k,$._t]],
   extras:$=>[]
 })
