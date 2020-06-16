@@ -6,6 +6,13 @@ i
 (k (n (int1)))
 
 ===
++
+===
++
+---
+(k (v))
+
+===
 i+i
 ===
 2+3
@@ -59,14 +66,85 @@ i+
 ===
 0+
 ---
-(k (cap (n (int1)) (v)))
+(k (pdap a: (n (int1)) v: (v)))
+
+===
+v v+
+===
+x y+
+---
+(k (pmap f: (n (var)) z: (pdap a: (n (var)) v: (v))))
 
 ===
 i++
 ===
 0++
 ---
-(k (cap (cap (n (int1)) (v)) (v)))
+(k (pdap a: (n (int1)) v: (v) z: (pmap v: (v))))
+
+===
+vvv
+===
++*!
+---
+(k (pmap f: (v) z: (pmap f: (v) z: (v))))
+
+===
+vvvn
+===
++*!0
+---
+(k (map f: (v) a: (map f: (v) a: (map f: (v) a: (n (int1))))))
+
+===
+vvva
+===
++*![0]
+---
+(k (map f: (v) a: (map f: (v) a: (ap f: (v) a: (seq (n (int1)))))))
+
+===
+nvv
+===
+(+)*!
+---
+(k (pdap a: (parn (v)) v: (v) z: (pmap v: (v))))
+
+===
+nvvn
+===
+(+)*!0
+---
+(k (dap a: (parn (v)) v: (v) b: (map f: (v) a: (n (int1)))))
+
+===
+nvva
+===
+(+)*![0]
+---
+(k (dap a: (parn (v)) v: (v) b: (ap f: (v) a: (seq (n (int1))))))
+
+===
+n(v×8)
+===
+42##########
+---
+(k (pdap a: (n (int1)) v: (v)
+    z: (pmap f: (v)
+        z: (pmap f: (v)
+            z: (pmap f: (v)
+                z: (pmap f: (v) z: (pmap f: (v) z: (pmap f: (v) z: (pmap f: (v) z: (pmap f: (v) z: (v)))))))))))
+
+===
+(v×8)
+===
+##########
+---
+(k (pmap f: (v)
+    z: (pmap f: (v)
+        z: (pmap f: (v)
+            z: (pmap f: (v)
+                z: (pmap f: (v) z: (pmap f: (v) z: (pmap f: (v) z: (pmap f: (v) z: (pmap f: (v) z: (v)))))))))))
 
 ===
 i++i
@@ -103,7 +181,7 @@ x[0]!x[1 2]
 ===
 #*[0]
 ---
-(k (ap (cap (v) (v)) (seq (n (int1)))))
+(k (map (v) (ap (v) (seq (n (int1))))))
 
 ===
 i+![i]
@@ -171,7 +249,7 @@ foo[;1][0;][2]
 ===
 +/*\
 ---
-(k (cap (avd (v) (a)) (avd (v) (a))))
+(k (pmap (avd (v) (a)) (avd (v) (a))))
 
 ===
 +/(i;i)
