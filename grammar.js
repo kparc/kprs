@@ -37,7 +37,7 @@ flt1:$=>seq(optional('-'),$._pflt1), _pflt1:$=>/(\d+\.|\d*\.\d+)(e-?\d+)?/,
 v:$=>choice('-',/[+*%!&|<>=~,^#_$?@.]/), _sp:$=>' ',
 a:$=>/[\/\\\']:?/,
 
-var: $=>/[a-z][a-z0-9]*/, _semi:$=>/;|\n\s+/, _ksep:$=>/;|\n/
+var: $=>/[a-zA-Z][a-zA-Z0-9]*/, _semi:$=>/;|\n\s+/, _ksep:$=>/;|\n/
 
 },conflicts:$=>[[$.dap,$._t],[$.parn,$.seq],[$.cap,$._t],[$.ass,$.dap,$._t],[$.ass,$._v],[$.dap,$.map],
                 [$.int1,$.v],[$.flt1,$.v],[$.n,$.intv],[$.intv],[$.intv,$.v],
