@@ -1,7 +1,7 @@
 /* e:nve|te|t..v|t t:n|v v:tA|V n:t[E*]|(E)|(E*)|{[..]E}|N
      dap map cap           avd    ap   parn list   lam     */
 A=alias; F=field; O=optional; C=choice; R=repeat; R1=repeat1; S=seq; P=prec; D=P.dynamic;
-module.exports=grammar({name:'k',rules:{k:$=>S(R($._ksep),$._k,O($.nb),R(S($._ksep,$._k,O($.nb)))),
+module.exports=grammar({name:'k',rules:{k:$=>S(R($._ksep),F('k',$._k),O($.nb),R(S($._ksep,F('k',$._k),O($.nb)))),
                                        _k:$=>C(D(1,$._v),$._e,$._pe),
 
 _pe:$=>D(-1,C($.pass,$.pdap,$.pdam,$.pmap)),

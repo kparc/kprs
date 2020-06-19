@@ -12,14 +12,14 @@ ls*
 (1 2
 3)
 ---
-(k (list (seq (map f: (n (intv)) (ERROR) a: (n (int1))))))
+(k k: (list (seq (map f: (n (intv)) (ERROR) a: (n (int1))))))
 
 ===
 nb1
 ===
 foo:+/ /hi
 ---
-(k (ass v: (n (var)) a: (avd f: (v) a: (a))) (nb))
+(k k: (ass v: (n (var)) a: (avd f: (v) a: (a))) (nb))
 
 ===
 nb2

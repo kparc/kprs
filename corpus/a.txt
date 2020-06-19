@@ -66,81 +66,81 @@ i+
 ===
 0+
 ---
-(k (pdap a: (n (int1)) v: (v)))
+(k k: (pdap a: (n (int1)) v: (v)))
 
 ===
 v v+
 ===
 x y+
 ---
-(k (pmap f: (n (var)) z: (pdap a: (n (var)) v: (v))))
+(k k: (pmap f: (n (var)) z: (pdap a: (n (var)) v: (v))))
 
 ===
 i++
 ===
 0++
 ---
-(k (pdap a: (n (int1)) v: (v) z: (pmap v: (v))))
+(k k: (pdap a: (n (int1)) v: (v) z: (pmap v: (v))))
 
 ===
 vvv
 ===
 +*!
 ---
-(k (pmap f: (v) z: (pmap f: (v) z: (pmap v: (v)))))
+(k k: (pmap f: (v) z: (pmap f: (v) z: (pmap v: (v)))))
 
 ===
 vvvn
 ===
 +*!0
 ---
-(k (map f: (v) a: (map f: (v) a: (map f: (v) a: (n (int1))))))
+(k k: (map f: (v) a: (map f: (v) a: (map f: (v) a: (n (int1))))))
 
 ===
 vvva
 ===
 +*![0]
 ---
-(k (map f: (v) a: (map f: (v) a: (ap f: (v) a: (seq (n (int1)))))))
+(k k: (map f: (v) a: (map f: (v) a: (ap f: (v) a: (seq (n (int1)))))))
 
 ===
 nvv
 ===
 (+)*!
 ---
-(k (pdap a: (parn (v)) v: (v) z: (pmap v: (v))))
+(k k: (pdap a: (parn (v)) v: (v) z: (pmap v: (v))))
 
 ===
 nvvn
 ===
 (+)*!0
 ---
-(k (dap a: (parn (v)) v: (v) b: (map f: (v) a: (n (int1)))))
+(k k: (dap a: (parn (v)) v: (v) b: (map f: (v) a: (n (int1)))))
 
 ===
 nvva
 ===
 (+)*![0]
 ---
-(k (dap a: (parn (v)) v: (v) b: (ap f: (v) a: (seq (n (int1))))))
+(k k: (dap a: (parn (v)) v: (v) b: (ap f: (v) a: (seq (n (int1))))))
 
 ===
 n(v×8)
 ===
 42########
 ---
-(k (pdap a: (n (int1)) v: (v)
-  z: (pmap f: (v) z: (pmap f: (v) z: (pmap f: (v) z: (pmap f: (v)
-   z: (pmap f: (v) z: (pmap f: (v) z: (pmap v: (v))))))))))
+(k k: (pdap a: (n (int1)) v: (v)
+    z: (pmap f: (v) z: (pmap f: (v) z: (pmap f: (v) z: (pmap f: (v)
+     z: (pmap f: (v) z: (pmap f: (v) z: (pmap v: (v))))))))))
 
 ===
 (v×8)
 ===
 ####++++
 ---
-(k (pmap f: (v)
-  z: (pmap f: (v) z: (pmap f: (v) z: (pmap f: (v) z: (pmap f: (v)
-   z: (pmap f: (v) z: (pmap f: (v) z: (pmap v: (v))))))))))
+(k k: (pmap f: (v)
+    z: (pmap f: (v) z: (pmap f: (v) z: (pmap f: (v) z: (pmap f: (v)
+     z: (pmap f: (v) z: (pmap f: (v) z: (pmap v: (v))))))))))
 
 ===
 i++i
@@ -605,16 +605,16 @@ v:+[..]
 ===
 x:+[2;2]
 ---
-(k (ass v: (n (var))
-        a: (ap f: (v) a: (seq (n (int1)) (n (int1))))))
+(k k: (ass v: (n (var))
+           a: (ap f: (v) a: (seq (n (int1)) (n (int1))))))
 
 ===
 v:nv
 ===
 suc:1+
 ---
-(k (pass v: (n (var))
-         a: (pdap a: (n (int1)) v: (v))))
+(k k: (pass v: (n (var))
+            a: (pdap a: (n (int1)) v: (v))))
 
 ===
 +[a:1;b:2]
@@ -646,9 +646,9 @@ e/I
 ===
 (:x+y)/2 2
 ---
-(k (map f: (avd f: (parn (exp (dap a: (n (var)) v: (v) b: (n (var)))))
-                a: (a))
-        a: (n (intv))))
+(k k: (map f: (avd f: (parn (exp (dap a: (n (var)) v: (v) b: (n (var)))))
+                   a: (a))
+           a: (n (intv))))
 
 ===
 lelf/pe/p24
