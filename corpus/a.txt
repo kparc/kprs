@@ -573,6 +573,22 @@ foo:
 (k (ass (n (var))))
 
 ===
+v:+[..]
+===
+x:+[2;2]
+---
+(k (ass v: (n (var))
+        a: (ap f: (v) a: (seq (n (int1)) (n (int1))))))
+
+===
+v:nv
+===
+suc:1+
+---
+(k (pass v: (n (var))
+         a: (pdap a: (n (int1)) v: (v))))
+
+===
 +[a:1;b:2]
 ===
 +[a:1;b:2]
