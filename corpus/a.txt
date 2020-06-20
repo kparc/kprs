@@ -245,7 +245,7 @@ foo[;1][0;][2]
 ===
 +/*\
 ---
-(k (pmap (avd (v) (a)) (avd (v) (a))))
+(k (pmap (avd (v) (a)) (pmap (avd (v) (a)))))
 
 ===
 +/(i;i)

@@ -8,7 +8,7 @@ _pe:$=>D(-1,C($.pass,$.pdap,$.pdam,$.pmap)),
    pass:$=>D(1,S(F('v',$._n),F('f',O($.v)),':',F('a',O($._pe)))),
    pdap:$=>D(2,S(F('a',$._n),O($._sp),F('v',$._v),         O($._sp),O(F('z',$._pe)))),
    pdam:$=>D(2,S(F('a',$._n),         F('v',A($._ugh,$.v)),O($._sp),O(F('z',$._pe)))),
-   pmap:$=>D(1,C(F('v',$.v),        S(F('f',$._t),         O($._sp),F('z',C($._v,$._pe))))),
+   pmap:$=>D(1,C(F('v',$._v),       S(F('f',$._t),         O($._sp),F('z',$._pe)))),
 
 _e:$=>D(-1,C($.ass,$.dap,$.dam,$.map,$._t,$.exp)),
    ass:$=>D(3,P(1,S(F('v',$._n),F('f',O($.v)),':',F('a',O($._e))))),
@@ -40,7 +40,7 @@ a:$=>/[\/\\\']:?/,
 
 var: $=>/[a-zA-Z][a-zA-Z0-9]*/, _semi:$=>C(/;\s*/,S(O($.nb),/\n\s+/)), _ksep:$=>C(/;\s*/,/\n/),
 
-},conflicts:$=>[[$.parn,$.seq],[$._k,$._t],[$._k,$.pass],
+},conflicts:$=>[[$.parn,$.seq],[$._k,$._t],[$._k,$.pass],[$._k,$.pmap,$._t],
                 [$.dap,$._t],[$.pmap,$._t],[$.pdap,$._t],[$.ass,$.dap,$.pdap,$._t],[$.dap,$.pdap,$._t],[$.pmap,$._v]
                 ],
   externals:$=>[$._ugh],
