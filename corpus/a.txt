@@ -674,3 +674,10 @@ p24:(:<<y,x)/|sv[1+!n:10]i:1000000-1
                               (map (v) (ass (n (var)) (n (int1)))))))
                 (ass (n (var))
                      (dam (n (int1)) (v) (n (int1)))))))))
+
+===
+i#[]
+===
+0#[]
+---
+(k k: (map f: (n (int1)) a: (ap f: (v))))
