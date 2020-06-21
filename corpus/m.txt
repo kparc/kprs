@@ -19,7 +19,7 @@ nb1
 ===
 foo:+/ /hi
 ---
-(k k: (ass v: (n (var)) a: (avd f: (v) a: (a))) (nb))
+(k k: (pass v: (n (var)) a: (pmap v: (avd f: (v) a: (a)))) (nb))
 
 ===
 nb2
@@ -35,4 +35,4 @@ nb3
 +  /oh
 :+ /ok
 ---
-(k (v) (nb) (exp (v)) (nb))
+(k (v) (nb) (pexp (pmap (v))) (nb))

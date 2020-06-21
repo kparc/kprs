@@ -4,15 +4,16 @@ A=alias; F=field; O=optional; C=choice; R=repeat; R1=repeat1; S=seq; P=prec; D=P
 module.exports=grammar({name:'k',rules:{k:$=>S(R($._ksep),F('k',$._k),O($.nb),R(S($._ksep,F('k',$._k),O($.nb)))),
                                        _k:$=>C(D(1,$._v),$._e,$._pe),
 
-_pe:$=>D(-1,C($.pass,$.pdap,$.pdam,$.pmap)),
-   pass:$=>D(1,S(F('v',$._n),F('f',O($.v)),':',F('a',O($._pe)))),
+_pe:$=>D(-1,C($.pass,$.pdap,$.pdam,$.pmap,$.pexp)),
+   pass:$=>D(1,P(1,S(F('v',$._n),F('f',O($.v)),':',F('a',O($._pe))))),
+   pexp:$=>                                  S(':',        $._pe),
    pdap:$=>D(2,S(F('a',$._n),O($._sp),F('v',$._v),         O($._sp),O(F('z',$._pe)))),
    pdam:$=>D(2,S(F('a',$._n),         F('v',A($._ugh,$.v)),O($._sp),O(F('z',$._pe)))),
    pmap:$=>D(1,C(F('v',$._v),       S(F('f',$._t),         O($._sp),F('z',$._pe)))),
 
 _e:$=>D(-1,C($.ass,$.dap,$.dam,$.map,$._t,$.exp)),
-   ass:$=>D(3,P(1,S(F('v',$._n),F('f',O($.v)),':',F('a',O($._e))))),
-   exp:$=>                                  S(':',        $._k),
+   ass:$=>D(1,P(1,S(F('v',$._n),F('f',O($.v)),':',F('a',O($._e))))),
+   exp:$=>                                  S(':',        $._e),
    dap:$=>D(2,S(F('a',$._n),O($._sp),F('v',$._v),         O($._sp),F('b',$._e))),
    dam:$=>D(2,S(F('a',$._n),         F('v',A($._ugh,$.v)),O($._sp),F('b',$._e))),
    map:$=>D(1,S(F('f',$._t),O($._sp),F('a',$._e))),
@@ -40,7 +41,7 @@ a:$=>/[\/\\\']:?/,
 
 var: $=>/[a-zA-Z][a-zA-Z0-9]*/, _semi:$=>C(/;\s*/,S(O($.nb),/\n\s+/)), _ksep:$=>C(/;\s*/,/\n/),
 
-},conflicts:$=>[[$.parn,$.seq],[$._k,$._t],[$._k,$.pass],[$._k,$.pmap,$._t],
+},conflicts:$=>[[$.parn,$.seq],[$._k,$._t],[$._k,$.pass],[$._k,$.pmap,$._t],[$.pass,$.ass],
                 [$.dap,$._t],[$.pmap,$._t],[$.pdap,$._t],[$.ass,$.dap,$.pdap,$._t],[$.dap,$.pdap,$._t],[$.pmap,$._v]
                 ],
   externals:$=>[$._ugh],

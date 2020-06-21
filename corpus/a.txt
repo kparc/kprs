@@ -609,6 +609,13 @@ x:+[2;2]
            a: (ap f: (v) a: (seq (n (int1)) (n (int1))))))
 
 ===
+v:+
+===
+plus:+
+---
+(k k: (pass v: (n (var)) a: (pmap v: (v))))
+
+===
 v:nv
 ===
 suc:1+
