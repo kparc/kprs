@@ -43,5 +43,5 @@ var: $=>/[a-zA-Z][a-zA-Z0-9]*/, _semi:$=>C(/;\s*/,S(O($.nb),/\n\s+/)), _ksep:$=>
 
 },conflicts:$=>[[$.pmap,$.pdap,$._e],[$.pass,$.ass],[$.pmap,$._e],[$.pmap,$.pdap],[$.dap,$.map],
                 [$.pmap,$._k,$._e],[$.parn,$.seq]],
-  externals:$=>[$._ugh],  inline:$=>[$._t],  supertypes:$=>[$._e,$._pe],  extras:$=>[]
+  externals:$=>[$._ugh],  inline:$=>[$._t],  supertypes:$=>[$._e,$._pe,$._n,$._v],  extras:$=>[]
 })
