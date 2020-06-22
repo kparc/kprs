@@ -3,7 +3,7 @@
 A=alias; F=field; O=optional; C=choice; R=repeat; R1=repeat1; S=seq; P=prec; D=P.dynamic;
 module.exports=grammar({name:'k',
            rules:{k:$=>S(R($._ksep),F('k',$._k),O($.nb),R(S($._ksep,F('k',$._k),O($.nb)))),
-                 _k:$=>C(D(1,$._v),$._e,$._pe),
+                 _k:$=>C(D(2,$._v),$._e,$._pe),
 
 _pe:$=>D(-1,C($.pass,$.pdap,$.pdam,$.pmap,$.pexp)),
    pass:$=>D(1,P(1,S(F('v',$._n),         F('f',O($.op)),':',              F('a',$._pe)))),
