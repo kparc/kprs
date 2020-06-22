@@ -681,3 +681,23 @@ i#[]
 0#[]
 ---
 (k k: (map f: (n (int1)) a: (ap f: (v))))
+
+===
+wild0
+===
++[+]+[+]:+
+---
+(k k: (pmap f: (ap f: (v) a: (seq (v)))
+            z: (pass v: (ap f: (v) a: (seq (v)))
+                     a: (pmap v: (v)))))
+
+===
+wild1
+===
+2-[2-]2-[2-]:2-
+---
+(k k: (pmap f: (n (int1))
+            z: (pmap f: (ap f: (v) a: (seq (pdap a: (n (int1)) v: (v))))
+                     z: (pmap f: (n (int1))
+                              z: (pass v: (ap f: (v) a: (seq (pdap a: (n (int1)) v: (v))))
+                                       a: (pdap a: (n (int1)) v: (v)))))))
