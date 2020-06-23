@@ -664,6 +664,23 @@ e/I
                    a: (a))
            a: (lit (intv))))
 
+===
+sorted
+===
+&/~<':
+---
+(k k: (pmap f: (avd f: (op) a: (a))
+          z: (pmap f: (op) z: (pmap v: (avd f: (op) a: (a))))))
+
+===
+amend
+===
+@[x;0;:;1]
+---
+(k (ap (op) (seq (lit (var))
+              (lit (int1))
+              (op)
+              (lit (int1)))))
 
 ===
 dct0
