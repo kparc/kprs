@@ -38,6 +38,17 @@ nb3
 (k (op) (nb) (pexp (pmap (op))) (nb))
 
 ===
+nb4
+===
+ /one
+ /two
+
+3 /threeeeee
+
+---
+(k (nb) (nb) (lit (int1)) (nb))
+
+===
 di2.1
 ===
 {a:a
@@ -49,3 +60,15 @@ di2.1
          kv: (kv k: (var) v: (dict
                kv:  (kv k: (var))
                kv:  (kv k: (var) v: (lit (int1)))))))
+
+===
+fun1
+===
+{[x;y]x:y
+      x*y}
+---
+(k k:
+    (lam v: (args (var) (var))
+         b: (seq (ass v: (lit (var)) a: (lit (var)))
+                 (dap a: (lit (var)) v: (op) b: (lit (var))))))
+

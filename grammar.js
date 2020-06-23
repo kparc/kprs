@@ -2,8 +2,8 @@
      dap map cap           avd    ap   parn list   lam     */
 A=alias; F=field; O=optional; C=choice; R=repeat; R1=repeat1; S=seq; P=prec; D=P.dynamic;
 module.exports=grammar({name:'k',
-           rules:{k:$=>S(R($._ksep),F('k',$._k),O($.nb),R(S($._ksep,F('k',$._k),O($.nb)))),
-                 _k:$=>C(D(2,$._v),$._e,$._pe),
+                        rules:{k:$=>S(R($._ksep),F('k',$._k),R(S($._ksep,F('k',O($._k))))),
+                              _k:$=>C(D(2,$._v),$._e,$._pe),
 
 _pe:$=>D(-1,C($.pass,$.pdap,$.pdam,$.pmap,$.pexp)),
    pass:$=>D(1,P(1,S(F('v',$._n),         F('f',O($.op)),':',              F('a',$._pe)))),
@@ -37,9 +37,10 @@ sym1:$=>/`[\w.]*/,                      symv:$=>/(`[\w.]*)+/,
 chr1:$=>/"([^\"]|\\.)"/,                chrv:$=>C(/""/,/"([^\"]|\\.)+"/),
 
 op:$=>C('-',/[+*%!&|<>=~,^#_$?@.]/),   a:$=>/[\/\\\']:?/,    _sp:$=>' ',    nb:$=>/\s+\/[^\n]+/,  
-var:$=>/[a-zA-Z][a-zA-Z0-9]*/,   _semi:$=>C(/;\s*/,S(O($.nb),/\n\s+/)), _ksep:$=>C(/;\s*/,/\n/),
+var:$=>/[a-zA-Z][a-zA-Z0-9]*/,         _semi:$=>C(/;\s*/,/\n\s+/),      _ksep:$=>C(/;\s*/,/\n/),
 
 },conflicts:$=>[[$.pmap,$.pdap,$._e],[$.pass,$.ass],[$.pmap,$._e],[$.pmap,$.pdap],[$.dap,$.map],
                 [$.pmap,$._k,$._e],[$.parn,$.seq]],
-  externals:$=>[$._ugh],inline:$=>[$._t,$.kvls],supertypes:$=>[$._e,$._pe,$._n,$._v],extras:$=>[]
+  externals:$=>[$._ugh],   inline:$=>[$._t,$.kvls],  supertypes:$=>[$._e,$._pe,$._n,$._v],
+     extras:$=>[$.nb]
 })
