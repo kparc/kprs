@@ -1,6 +1,7 @@
 /* e:nve|te|t..v|t t:n|v v:tA|V n:t[E*]|(E)|(E*)|{[..]E}|N
      dap map cap           avd    ap   parn list   lam     */
 A=alias; F=field; O=optional; C=choice; R=repeat; R1=repeat1; S=seq; P=prec; D=P.dynamic;
+                                                                RS=(e,s)=>S(e,R(S(s,e)));
 module.exports=grammar({name:'k',
                         rules:{k:$=>S(R($._ksep),F('k',$._k),R(S($._ksep,F('k',O($._k))))),
                               _k:$=>C(D(2,$._v),$._e,$._pe),
@@ -24,10 +25,10 @@ _n:$=>C($.ap,$.parn,$.list,$.dict,$.tabl,$.lit,$.lam),
 
 parn:$=>S('(',$._k,    ')'),
 list:$=>S('(',O($.seq),')'),                 ap:$=>P(2,S(F('f',$._e),'[',F('a',O($.seq)),']')),
-dict:$=>S('{',O($.kvls),'}'),               kvls:$=>S(F('kv',$.kv),R(S($._semi,F('kv',$.kv)))),
+dict:$=>S('{',O($.kvls),'}'),                                 kvls:$=>RS(F('kv',$.kv),$._semi),
 tabl:$=>S('[[',O($.kvls),']',$.kvls,']'),             kv:$=>S(F('k',$.var),':',F('v',O($._k))),
 
-lam: $=>S('{[',F('v',O($.args)),']',F('b',O($.seq)),'}'),     args:$=>S($.var,R(S(';',$.var))),
+lam: $=>S('{[',F('v',O($.args)),']',F('b',O($.seq)),'}'),                args:$=>RS($.var,';'),
 seq: $=>C(R1($._semi),S(R($._semi),S($._k,R(S($._semi,O($._k)))))),
 
 lit: $=>C($.int1,$.intv,$.flt1,$.fltv,$.sym1,$.symv,$.chr1,$.chrv,$.var), //move everything to lexer
