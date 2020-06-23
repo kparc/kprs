@@ -683,6 +683,20 @@ amend
               (lit (int1)))))
 
 ===
+io0
+===
+header:*0:"01.txt"
+---
+(k k: (ass v: (lit (var)) a: (map f: (op) a: (map f: (io) a: (lit (chrv))))))
+
+===
+io1
+===
+` 0:msg:"hi!"
+---
+(k k: (dap a: (lit (sym1)) v: (io) b: (ass v: (lit (var)) a: (lit (chrv)))))
+
+===
 dct0
 ===
 {}

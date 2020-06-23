@@ -1,7 +1,7 @@
 /* e:nve|te|t..v|t t:n|v v:tA|V n:t[E*]|(E)|(E*)|{[..]E}|N
      dap map cap           avd    ap   parn list   lam     */
 A=alias; F=field; O=optional; C=choice; R=repeat; R1=repeat1; S=seq; P=prec; D=P.dynamic;
-                                                                RS=(e,s)=>S(e,R(S(s,e)));
+                                                       T=token, RS=(e,s)=>S(e,R(S(s,e)));
 module.exports=grammar({name:'k',
                         rules:{k:$=>S(R($._ksep),F('k',$._k),R(S($._ksep,F('k',O($._k))))),
                               _k:$=>C(D(2,$._v),$._e,$._pe),
@@ -20,7 +20,7 @@ _e:$=>D(-1,C($.ass,$.dap,$.dam,$.map,$.exp,$._t)),
    dam:$=>    D(2,S(F('a',$._n),         F('v',A($._ugh,$.op)),O($._sp),F('b',$._e))),
    map:$=>    D(1,S(F('f',$._t),                               O($._sp),F('a',$._e))),
 
-_t:$=>C($._n,$._v),                      _v:$=>C($.avd,$.op), avd:$=>S(F('f',$._t),F('a',$.a)),
+_t:$=>C($._n,$._v),                 _v:$=>C($.avd,$.op,$.io), avd:$=>S(F('f',$._t),F('a',$.a)),
 _n:$=>C($.ap,$.parn,$.list,$.dict,$.tabl,$.lit,$.lam),
 
 parn:$=>S('(',$._k,    ')'),
@@ -37,8 +37,9 @@ flt1:$=>/-?(\d+\.|\d*\.\d+)(e-?\d+)?/,  fltv:$=>/-?(\d+\.?|\d*\.?\d+)(e-?\d+)?( 
 sym1:$=>/`[\w.]*/,                      symv:$=>/(`[\w.]*)+/,
 chr1:$=>/"([^\"]|\\.)"/,                chrv:$=>C(/""/,/"([^\"]|\\.)+"/),
 
-op:$=>C('-',P(-1,':'),/[+*%!&|<>=~,^#_$?@.]/), a:$=>/[\/\\\']:?/,           nb:$=>/\s+\/[^\n]+/,
+io:$=>T(S(/\d/,':')),     op:$=>C('-',P(-1,':'),/[+*%!&|<>=~,^#_$?@.]/),      a:$=>/[\/\\\']:?/,
 var:$=>/[a-zA-Z][a-zA-Z0-9]*/, _semi:$=>C(/;\s*/,/\n\s+/), _ksep:$=>C(/;\s*/,/\n/),  _sp:$=>' ',
+nb:$=>/\s+\/[^\n]+/,
 
 },conflicts:$=>[[$.pmap,$.pdap,$._e],[$.pass,$.ass],[$.pmap,$._e],[$.pmap,$.pdap],[$.dap,$.map],
                 [$.pmap,$._k,$._e],[$.parn,$.seq]],
