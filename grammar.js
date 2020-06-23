@@ -19,11 +19,13 @@ _e:$=>D(-1,C($.ass,$.dap,$.dam,$.map,$.exp,$._t)),
    dam:$=>    D(2,S(F('a',$._n),         F('v',A($._ugh,$.op)),O($._sp),F('b',$._e))),
    map:$=>    D(1,S(F('f',$._t),                               O($._sp),F('a',$._e))),
 
-_t:$=>C($._n,$._v),
-_n:$=>C($.ap,$.parn,$.list,$.lit,$.lam), _v:$=>C($.avd,$.op), avd:$=>S(F('f',$._t),F('a',$.a)),
+_t:$=>C($._n,$._v),                      _v:$=>C($.avd,$.op), avd:$=>S(F('f',$._t),F('a',$.a)),
+_n:$=>C($.ap,$.parn,$.list,$.dict,$.tabl,$.lit,$.lam),
 
 parn:$=>S('(',$._k,    ')'),
 list:$=>S('(',O($.seq),')'),                 ap:$=>P(2,S(F('f',$._e),'[',F('a',O($.seq)),']')),
+dict:$=>S('{',O($.kvls),'}'),               kvls:$=>S(F('kv',$.kv),R(S($._semi,F('kv',$.kv)))),
+tabl:$=>S('[[',O($.kvls),']',$.kvls,']'),             kv:$=>S(F('k',$.var),':',F('v',O($._k))),
 
 lam: $=>S('{[',F('v',O($.args)),']',F('b',O($.seq)),'}'),     args:$=>S($.var,R(S(';',$.var))),
 seq: $=>C(R1($._semi),S(R($._semi),S($._k,R(S($._semi,O($._k)))))),
@@ -39,5 +41,5 @@ var:$=>/[a-zA-Z][a-zA-Z0-9]*/,   _semi:$=>C(/;\s*/,S(O($.nb),/\n\s+/)), _ksep:$=
 
 },conflicts:$=>[[$.pmap,$.pdap,$._e],[$.pass,$.ass],[$.pmap,$._e],[$.pmap,$.pdap],[$.dap,$.map],
                 [$.pmap,$._k,$._e],[$.parn,$.seq]],
-  externals:$=>[$._ugh],  inline:$=>[$._t],  supertypes:$=>[$._e,$._pe,$._n,$._v],  extras:$=>[]
+  externals:$=>[$._ugh],inline:$=>[$._t,$.kvls],supertypes:$=>[$._e,$._pe,$._n,$._v],extras:$=>[]
 })

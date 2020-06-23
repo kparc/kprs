@@ -36,3 +36,16 @@ nb3
 :+ /ok
 ---
 (k (op) (nb) (pexp (pmap (op))) (nb))
+
+===
+di2.1
+===
+{a:a
+ b:{c:
+    d:42}}
+---
+(k k:
+ (dict   kv: (kv k: (var) v: (lit (var)))
+         kv: (kv k: (var) v: (dict
+               kv:  (kv k: (var))
+               kv:  (kv k: (var) v: (lit (int1)))))))

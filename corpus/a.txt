@@ -664,6 +664,36 @@ e/I
                    a: (a))
            a: (lit (intv))))
 
+
+===
+dct0
+===
+{}
+---
+(k (dict))
+
+===
+dct1
+===
+{x:1}
+---
+(k (dict (kv (var) (lit (int1)))))
+
+===
+dct2
+===
+{sum:+/; add::x+y}
+---
+(k (dict (kv (var) (avd (op) (a)))
+         (kv (var) (exp (dap (lit (var)) (op) (lit (var)))))))
+
+===
+tbl1
+===
+[[]s:`AAPL`MSFT`GOOG]
+---
+(k (tabl (kv (var) (lit (symv))))) 
+
 ===
 lelf/pe/p24
 ===
