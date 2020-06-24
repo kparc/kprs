@@ -1,10 +1,10 @@
-/* e:nve|te|t..v|t t:n|v v:tA|V n:t[E*]|(E)|(E*)|{[..]E}|N
-     dap map cap           avd    ap   parn list   lam     */
-A=alias; F=field; O=optional; C=choice; R=repeat; R1=repeat1; S=seq; P=prec; D=P.dynamic;
-                                                       T=token, RS=(e,s)=>S(e,R(S(s,e)));
+/* e:nve| te|ε-see| ad  n- e|n:e|:e  t:n v:tA|V n:e[E*]| (E)|(E*)|{[..]E}|{v:E..}|[[.]..]|lit:iIfFnNcCv
+     dap|map|  pe |hocs: dam|ass|exp  /v  avd|     ap  |parn|list|  lam  |  dict |  tabl |            ?
+ */                           A=alias; F=field; O=optional; C=choice;  R=repeat; R1=repeat1;
+                              S=seq; P=prec; D=P.dynamic; T=token, RS=(e,s)=>S(e,R(S(s,e)));
 module.exports=grammar({name:'k',
-                        rules:{k:$=>S(R($._ksep),F('k',$._k),R(S($._ksep,F('k',O($._k))))),
-                              _k:$=>C(D(2,$._v),$._e,$._pe),
+                 rules:{k:$=>S(O($.nb),R($._ksep),F('k',$._k),R(S($._ksep,F('k',O($._k))))),
+                       _k:$=>C(D(2,$._v),$._e,$._pe),
 
 _pe:$=>D(-1,C($.pass,$.pdap,$.pdam,$.pmap,$.pexp)),
    pass:$=>D(1,P(1,S(F('v',$._n),         F('f',O($.op)),':',              F('a',$._pe)))),
