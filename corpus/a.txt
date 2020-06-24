@@ -726,6 +726,20 @@ tbl1
 (k (tabl (kv (var) (lit (symv))))) 
 
 ===
+c1
+===
+("a";" ";"\n")
+---
+(k (list (seq (lit (chr1)) (lit (chr1)) (lit (chr1)))))
+
+===
+c2
+===
+("\";""")
+---
+(k (parn (map (lit (chrv)) (lit (chrv)))))
+
+===
 lelf/pe/p24
 ===
 p24:(:<<y,x)/|sv[1+!n:10]i:1000000-1
