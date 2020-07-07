@@ -1,0 +1,41 @@
+
+<head>
+  <meta charset="utf-8">
+  <title>k</title>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/codemirror/5.45.0/codemirror.min.css">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/clusterize.js/0.18.0/clusterize.min.css">
+</head>
+
+<body>
+  <div id="playground-container" style="visibility: hidden;">
+    <header>
+      <div class="header-item">k<a href="https://github.com/kparc/kprs/">src</a></div>
+    </header>
+
+    <main>
+      <div id="input-pane">
+        <div id="code-container">
+          <textarea id="code-input">
+- 0--3.14 /hi
+6`mod'42*
+</textarea>
+        </div>
+
+        <div id="query-container" style="visibility: hidden; position: absolute;">
+          <textarea id="query-input"></textarea>
+        </div>
+      </div>
+
+      <div id="output-container-scroll">
+        <pre id="output-container" class="highlight"></pre>
+      </div>
+    </main>
+  </div>
+
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/codemirror/5.45.0/codemirror.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/clusterize.js/0.18.0/clusterize.min.js"></script>
+  <script src="tree-sitter.js"></script>
+  <script src="p.js"></script>
+  <style>@import "css/scp.css";@import "css/p.css";</style>
+</body>
