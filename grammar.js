@@ -1,5 +1,5 @@
-/* e:nve| te|ε-see| ad  n- e|n:e|:e  t:n v:tA|V n:e[E*]| (E)|(E*)|{[..]E}|{v:E..}|[[.]..]|lit:iIfFnNcCv
-     dap|map|  pe |hocs: dam|ass|exp  /v  avd|     ap  |parn|list|  lam  |  dict |  tabl |            ?
+/* e:nve| te|ε-see| ad  n- e|n:e|:e  t:n v:tA|V n:e[E*]| (E)|(E*)|{[..]E}|{v:E..}|[[.]..]|lit:iIfFnbBNcCv
+     dap|map|  pe |hocs: dam|ass|exp  /v  avd|     ap  |parn|list|  lam  |  dict |  tabl |              ?
  */                          A=alias, F=field, O=optional, C=choice,  R=repeat, R1=repeat1;
 /*(c)2020-now lelf; kparc */ S=seq, P=prec, D=P.dynamic, T=token, RS=(e,s)=>S(e,R(S(s,e)));
 module.exports=grammar({name:'k',
@@ -21,7 +21,7 @@ _e:$=>D(-1,C($.ass,$.dap,$.dam,$.map,$.exp,$._t)),
    map:$=>    D(1,S(F('f',$._t),                               R($._sp),F('a',$._e))),
 
 _t:$=>C($._n,$._v),                 _v:$=>C($.avd,$.op,$.io), avd:$=>S(F('f',$._t),F('a',$.a)),
-_n:$=>C($.ap,$.parn,$.list,$.dict,$.tabl,$._lit,$.lam),
+_n:$=>C($.ap,$.parn,$.list,$.dict,$.tabl,$.lit,$.lam),
 
 parn:$=>S('(',$._k,    ')'),
 list:$=>S('(',O($.seq),')'),                 ap:$=>P(2,S(F('f',$._e),'[',F('a',O($.seq)),']')),
@@ -31,7 +31,7 @@ tabl:$=>S('[','[',O($.kvls),']',$.kvls,']'),          kv:$=>S(F('k',$.var),':',F
 lam: $=>S('{[',F('v',O($.args)),']',F('b',O($.seq)),'}'),                args:$=>RS($.var,';'),
 seq: $=>C(R1($.SEMI),S(R($.SEMI),S($._k,R(S($.SEMI,O($._k)))))),
 
-_lit: $=>C($.int1,$.intv,$.flt1,$.fltv,$.bit1,$.bitv,$.sym1,$.symv,$.chr1,$.chrv,$.var), //--------move regex rubbish to lexer
+lit: $=>C($.int1,$.intv,$.flt1,$.fltv,$.bit1,$.bitv,$.sym1,$.symv,$.chr1,$.chrv,$.var), //--------move regex rubbish to lexer
 int1:$=>/-?\d+[ijh]?/,            flt1:$=>/-?(\d+\.?|\d*\.\d+)(e-?\d+)?[fe]?/,
 intv:$=>/-?\d+( -?\d+)+[ijh]?/,   fltv:$=>/-?(\d+\.?|\d*\.?\d+)(e-?\d+)?( -?(\d+\.?|\d*\.\d+)(e-?\d+)?)+[fe]?/,
 bit1:$=>/-?[01]b/,                bitv:$=>/(-?[01]( ?[01])+b)/,
