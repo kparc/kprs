@@ -21,7 +21,7 @@ _e:$=>D(-1,C($.ass,$.dap,$.dam,$.map,$.exp,$._t)),
    map:$=>    D(1,S(F('f',$._t),                               R($._sp),F('a',$._e))),
 
 _t:$=>C($._n,$._v),                 _v:$=>C($.avd,$.op,$.io), avd:$=>S(F('f',$._t),F('a',$.a)),
-_n:$=>C($.ap,$.parn,$.list,$.dict,$.tabl,$.lit,$.lam),
+_n:$=>C($.ap,$.parn,$.list,$.dict,$.tabl,$._lit,$.lam),
 
 parn:$=>S('(',$._k,    ')'),
 list:$=>S('(',O($.seq),')'),                 ap:$=>P(2,S(F('f',$._e),'[',F('a',O($.seq)),']')),
@@ -31,7 +31,7 @@ tabl:$=>S('[','[',O($.kvls),']',$.kvls,']'),          kv:$=>S(F('k',$.var),':',F
 lam: $=>S('{[',F('v',O($.args)),']',F('b',O($.seq)),'}'),                args:$=>RS($.var,';'),
 seq: $=>C(R1($.SEMI),S(R($.SEMI),S($._k,R(S($.SEMI,O($._k)))))),
 
-lit: $=>C($.int1,$.intv,$.flt1,$.fltv,$.bit1,$.bitv,$.sym1,$.symv,$.chr1,$.chrv,$.var), //--------move regex rubbish to lexer
+_lit: $=>C($.int1,$.intv,$.flt1,$.fltv,$.bit1,$.bitv,$.sym1,$.symv,$.chr1,$.chrv,$.var), //--------move regex rubbish to lexer
 int1:$=>/-?\d+[ijh]?/,            flt1:$=>/-?(\d+\.?|\d*\.\d+)(e-?\d+)?[fe]?/,
 intv:$=>/-?\d+( -?\d+)+[ijh]?/,   fltv:$=>/-?(\d+\.?|\d*\.?\d+)(e-?\d+)?( -?(\d+\.?|\d*\.\d+)(e-?\d+)?)+[fe]?/,
 bit1:$=>/-?[01]b/,                bitv:$=>/(-?[01]( ?[01])+b)/,
