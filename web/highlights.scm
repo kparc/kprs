@@ -19,7 +19,7 @@
 (pmap f: (op) @mo) (pmap v: (op) @mo)
 
 (a) @a ;;(avd f: (kt) @advf)
-(int1) @i (intv) @I (flt1) @f (fltv) @F (sym1) @n (symv) @N (chr1) @c (chrv) @C
+(int1) @i (intv) @I (flt1) @f (fltv) @F (bit1) @b (bitv) @B (sym1) @n (symv) @N (chr1) @c (chrv) @C
 
 
 (parn "(" @pare (k (exp)) ")" @pare)

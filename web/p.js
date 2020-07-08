@@ -2,7 +2,39 @@ let tree; //adapted from tree-sitter docs -lelf
 
 (async () => {
   const CAPTURE_REGEX = /@\s*([\w\._-]+)/g;
-  const COLORS_BY_INDEX = ['red','gray',    '#268bd2',    '#d33682',    '#6c71c4',    '#b58900',    '#859900',    '#2aa198',    "green","blue",        '#d00682',    '#6001c4',    '#200bd2',    '#b00900',    '#800900',    '#cb4b16',    '#dc322f',    '#c00b16',    '#d0022f',    '#bf8970',    '#200198',    '#cf4b76',    '#df327f',    '#df3672',    '#6f7174',    '#2f8b72',    '#2fa178',    '#8f9970',    '#bf8970',    '#cf4b76',    '#df327f',    '#df3672',    '#6f7174',    '#2f8b72',    '#2fa178',    '#8f9970',    'blue',    'chocolate',    'darkblue',    'darkcyan',    'darkgreen',    'darkred',    'darkslategray',    'dimgray',    'green',    'indigo',    'navy',    'red',    'sienna'  ];
+  //const COLORS_BY_INDEX = ['red','gray',    '#268bd2',    '#d33682',    '#6c71c4',    '#b58900',    '#859900',    '#2aa198',    "green","blue",        '#d00682',    '#6001c4',    '#200bd2',    '#b00900',    '#800900',    '#cb4b16',    '#dc322f',    '#c00b16',    '#d0022f',    '#bf8970',    '#200198',    '#cf4b76',    '#df327f',    '#df3672',    '#6f7174',    '#2f8b72',    '#2fa178',    '#8f9970',    '#bf8970',    '#cf4b76',    '#df327f',    '#df3672',    '#6f7174',    '#2f8b72',    '#2fa178',    '#8f9970',    'blue',    'chocolate',    'darkblue',    'darkcyan',    'darkgreen',    'darkred',    'darkslategray',    'dimgray',    'green',    'indigo',    'navy',    'red',    'sienna'  ];
+  const COLOR_MAP = {
+        'err':  'red',
+        'nb':   'gray',
+        'do':   '#268bd2',
+        'mo':   '#d33682',
+        'mavo': '#6c71c4',
+        'sym':  '#b58900',
+        'vass': '#859900',
+        'io':   '#2aa198',
+        'a':    'green',
+        'i':    'blue',
+        'I':    '#d00682',
+        'f':    '#6001c4',
+        'F':    '#200bd2',
+        'b':    '#b00900',
+        'B':    '#800900',
+        'n':    '#cb4b16',
+        'N':    '#dc322f',
+        'c':    '#c00b16',
+        'C':    '#d0022f',
+        'pare': '#bf8970',
+        'par':  '#200198',
+        'parl': '#cf4b76',
+        'parm': '#df327f',
+        'lv':   '#df3672',
+        'abrk': '#6f7174',
+        'pard': '#2f8b72',
+        'kv':   '#2fa178',
+        'var':  '#8f9970',
+        'op':   '#bf8970',
+        'SEMI': '#cf4b76'
+  };
 
   const scriptURL = document.currentScript.getAttribute('src');
 
@@ -112,7 +144,7 @@ let tree; //adapted from tree-sitter docs -lelf
           const id = cursor.nodeId;
           let fieldName = cursor.currentFieldName();
 
-let nod=cursor.currentNode(); let ntxt=nod.text.split("\n").length>1 ? "": `｢`+nod.text.split("\n")[0]+`｣`;
+          let nod=cursor.currentNode(); let ntxt=nod.text.split("\n").length>1 ? "": `｢`+nod.text.split("\n")[0]+`｣`;
 
           if (fieldName) {
             fieldName = `(${fieldName})`;
@@ -269,8 +301,9 @@ let nod=cursor.currentNode(); let ntxt=nod.text.split("\n").length>1 ? "": `｢`
   }
 
   function colorForCaptureName(capture) {
-    const id = query.captureNames.indexOf(capture);
-    return COLORS_BY_INDEX[id % COLORS_BY_INDEX.length];
+    //const id = query.captureNames.indexOf(capture);console.log(query.captureNames, capture,id,id % COLORS_BY_INDEX.length);
+    //return COLORS_BY_INDEX[id % COLORS_BY_INDEX.length];
+    return COLOR_MAP[capture]||COLOR_MAP['err'];
   }
 
   function loadState() {

@@ -2,11 +2,14 @@ EMOPT=${shell grep -v '@see' opt | xargs}
 
 all: dep wsm
 
-wsm:
+gen:
 	tree-sitter generate
+
+wsm: gen
 	cp c.h scanner.c src
 	tree-sitter build-wasm && mv tree-sitter-k.wasm web/
-cli:
+
+cli: gen
 	gcc -O0 -g -o p3 *.c src/parser.c -Itree-sitter/lib/include -Ltree-sitter -ltree-sitter
 
 wsm-cli:

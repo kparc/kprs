@@ -31,11 +31,13 @@ tabl:$=>S('[','[',O($.kvls),']',$.kvls,']'),          kv:$=>S(F('k',$.var),':',F
 lam: $=>S('{[',F('v',O($.args)),']',F('b',O($.seq)),'}'),                args:$=>RS($.var,';'),
 seq: $=>C(R1($.SEMI),S(R($.SEMI),S($._k,R(S($.SEMI,O($._k)))))),
 
-lit: $=>C($.int1,$.intv,$.flt1,$.fltv,$.sym1,$.symv,$.chr1,$.chrv,$.var), //--------move regex rubbish to lexer
+lit: $=>C($.int1,$.intv,$.flt1,$.fltv,$.bit1,$.bitv,$.sym1,$.symv,$.chr1,$.chrv,$.var), //--------move regex rubbish to lexer
 int1:$=>/-?\d+[ijh]?/,            flt1:$=>/-?(\d+\.?|\d*\.\d+)(e-?\d+)?[fe]?/,
 intv:$=>/-?\d+( -?\d+)+[ijh]?/,   fltv:$=>/-?(\d+\.?|\d*\.?\d+)(e-?\d+)?( -?(\d+\.?|\d*\.\d+)(e-?\d+)?)+[fe]?/,
+bit1:$=>/-?[01]b/,                bitv:$=>/(-?[01]( ?[01])+b)/,
 sym1:$=>/`[\w.:]*/,               symv:$=>/(`[\w.]*)+/,
 chr1:$=>/"([^\\\"]|\\.)"/,        chrv:$=>C(/""/,/"([^\\\"]|\\.)+"/),
+
 
 io:$=>T(S(/\d/,':')),     op:$=>C('-',P(-1,':'),/[+*%!&|<>=~,^#_$?@.]/),      a:$=>/[\/\\\']:?/,
 var:$=>/[a-zA-Z][a-zA-Z0-9]*/,  SEMI:$=>C(/;\s*/,/\n\s+/),  KSEP:$=>C(/;\s*/,/\n/),  _sp:$=>' ',
