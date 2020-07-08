@@ -1,4 +1,5 @@
-body {font-family: "Source Code Pro"; background: url(../img/bg.jpg);margin: 0;padding: 0;}
+/* https://www.cssmatic.com/noise-texture */
+body {font-family: "Source Code Pro"; background:url(../img/bg.png);margin: 0;padding: 0;}
 header a{color:#bbb;position:absolute;right:3ex}
 #playground-container{width: 100%;height: 100%;display: flex;flex-direction: column;}
 header {box-sizing: border-box;display: flex;padding: 20px;height: 60px;border-bottom: 1px solid #aaa;}
